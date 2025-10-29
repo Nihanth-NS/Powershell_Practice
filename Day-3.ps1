@@ -47,3 +47,26 @@
     
   
  }
+ ####################################USING MAILKIT with MIME######################################
+ $cred = get-credential
+ $from = [Mimekit.MailboxAddress]::new("Nihanth","nihanths17@gmail.com")
+ $to = [Mimekit.InternetAddressList]::new()
+ $to.add([Mimekit.InternetAddress]::new("thenihanth@gmail.com"))
+ $cc = [Mimekit.InternetAddressList]::new()
+ $cc.add([Mimekit.InternetAddress]::new("some@gmail.com"))
+ $Bcc = [Mimekit.InternetAddressList]::new()
+ $Bcc.add([Mimekit.InternetAddress]::new("some@gmail.com"))
+ $subject = "TESTING"
+ $html_body = "<h2> THIS IS GOOD </h2>
+               <p> Mail SENT </p>"
+$attachments = @("path/to/file",path/to/file)
+Send-mailKitMessage -SMTPServer "smtp.gmail.com"
+                    - port 587
+                    - credential $cred
+                    - From $from
+                    - Receipient $to
+                    - CCReceipient $cc
+                    - BccReceipient $bcc
+                    - Subject $subject
+                    - HTML Body $html_body
+                    - Attachment $attachments
